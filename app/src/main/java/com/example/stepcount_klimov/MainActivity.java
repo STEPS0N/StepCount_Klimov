@@ -20,7 +20,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public boolean active = true;
     private SensorManager sensorManager;
     private int count = 0;
+    private double calories = 0.00;
     private TextView text;
+    private TextView caloriesText;
     private long lastUpdate;
 
     @Override
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        caloriesText = findViewById(R.id.textView4);
+        caloriesText.setText(Double.valueOf(calories) + " ккал");
         text = findViewById(R.id.textView2);
         text.setText(String.valueOf(count));
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -94,8 +98,21 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                 count ++;
                 text.setText(String.valueOf(count));
+                calculateCallory();
             }
         }
+    }
+
+    private void calculateCallory(){
+        calories = (count * 0.04);
+        caloriesText.setText(String.valueOf(calories) + " ккал");
+    }
+
+    public void onClear(View view){
+        count = 0;
+        calories = 0.00;
+        text.setText(String.valueOf(count));
+        caloriesText.setText(Double.valueOf(calories) + " ккал");
     }
 
     @Override
