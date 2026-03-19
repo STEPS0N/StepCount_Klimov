@@ -48,6 +48,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="75dp"
         android:background="@drawable/radius_button"
+        android:onClick="onStoped"
         android:text="ПАУЗА"
         android:textColor="#00B7FF"
         app:layout_constraintEnd_toEndOf="parent"
